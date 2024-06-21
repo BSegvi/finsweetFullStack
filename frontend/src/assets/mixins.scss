@@ -1,0 +1,25 @@
+
+
+html {
+  font-size: var(--font-size);
+  @media (max-width: 1200px) {
+    --font-size: 15px;
+  }
+
+  @media (max-width: 992px) {
+    --font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    --font-size: 13px;
+  }
+
+  @media (max-width: 600px) {
+    --font-size: 12px;
+  }
+}
+
+
+@function r($value) {
+  @return (calc($value / 16) * 1rem);
+}
