@@ -1,7 +1,9 @@
 <template>
   <nav class="navigationWrapper">
     <div class="navigation container">
-      <img src="/icons/finsweetLogo.svg" alt="" />
+      <a href="/">
+        <img src="/icons/finsweetLogo.svg" alt="" />
+      </a>
       <ul class="navigation__List">
         <li>
           <a href=""> Home </a>
@@ -60,7 +62,7 @@ const info = ref(null);
   color: white;
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: r(24);
   li {
     a {
       font-size: r(16);
