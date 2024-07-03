@@ -7,7 +7,7 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
-import { User as UserModel, Post as PostModel, Homepage as HomepageModel } from '@prisma/client';
+import { Author as AuthorModel, Post as PostModel, Homepage as HomepageModel } from '@prisma/client';
 import { UserService } from './user/user.service';
 import { PostService } from './post/post.service';
 import { HomepageService } from './homepage/homepage.service';
@@ -72,7 +72,7 @@ export class AppController {
   // @Post('user')
   // async signupUser(
   //   @Body() userData: { name?: string; email: string },
-  // ): Promise<UserModel> {
+  // ): Promise<AuthorModel> {
   //   return this.userService.createUser(userData);
   // }
 

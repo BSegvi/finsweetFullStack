@@ -23,12 +23,30 @@
         </div>
       </div>
     </div>
+    <HomePosts :data="data"/>
+    <HomeAbout :data="data.homeAbout"/>
+    <Categories :data="data.categories"/>
+    <Started :data="data.started[0]"/>
+    <Authors :data="data.authors"/>
+    <Companies />
+    <Testimonials :data="data.homepage_testimonials[0]"/>
+    <JoinUs />
+    <Footer />
   </section>
 </template>
 
 <script setup>
 import { onMounted, ref } from "vue";
 import { ofetch } from "ofetch";
+import HomePosts from "@/components/HomePosts.vue";
+import HomeAbout from "@/components/HomeAbout.vue";
+import Categories from "@/components/Categories.vue";
+import Started from "@/components/Started.vue";
+import Authors from "@/components/Authors.vue";
+import Companies from "@/components/Companies.vue";
+import Testimonials from "@/components/Testimonials.vue";
+import JoinUs from "@/components/JoinUs.vue";
+import Footer from "@/components/Footer.vue";
 
 const data = ref(null);
 const isLoaded = ref(false);
@@ -36,9 +54,7 @@ const isLoaded = ref(false);
 onMounted(async () => {
   try {
     data.value = await ofetch("http://localhost:3000/homepage");
-    console.log(data.value);
     data.value = data.value[0];
-    console.log(data.value);
     isLoaded.value = true;
   } catch (e) {
     console.dir(e);

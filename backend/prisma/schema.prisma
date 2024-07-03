@@ -13,23 +13,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
-}
-
 model Homepage {
-  id          Int       @id @default(autoincrement())
-  super_title String
-  title       String
-  authorId    Int?
-  date        DateTime?
-  description String?
-  button_cta  String
-  posts       Post[]    @relation("HomepagePosts")
-  published   Boolean?  @default(false)
+  id                    Int            @id @default(autoincrement())
+  super_title           String
+  title                 String
+  authorId              Int?
+  date                  DateTime?
+  description           String?
+  button_cta            String
+  published             Boolean?       @default(false)
+  posts                 Post[]         @relation("HomepagePosts")
+  homeAbout             HomeAbout[]    @relation("HomeAbout")
+  categories            Categories[]   @relation("Categories")
+  started               Started[]      @relation("Started")
+  authors               Author[]       @relation("Authors")
+  homepage_testimonials Testimonials[] @relation("HomepageTestimonials")
+  homepage_join         Join[]         @relation("HomepageJoin")
 }
 
 model Post {
@@ -38,8 +37,79 @@ model Post {
   content        String?
   published      Boolean?  @default(false)
   published_date DateTime?
-  author         User?     @relation(fields: [authorId], references: [id])
+  author         Author?   @relation(fields: [authorId], references: [id])
   authorId       Int?
   Homepage       Homepage? @relation(fields: [homepageId], references: [id], name: "HomepagePosts")
   homepageId     Int?
+}
+
+model HomeAbout {
+  id          Int       @id @default(autoincrement())
+  super_title String
+  title       String
+  description String?
+  link_cta    String
+  Homepage    Homepage? @relation(fields: [homepageId], references: [id], name: "HomeAbout")
+  homepageId  Int?
+}
+
+model Categories {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String
+  Homepage    Homepage? @relation(fields: [homepageId], references: [id], name: "Categories")
+  homepageId  Int?
+}
+
+model Started {
+  id          Int       @id @default(autoincrement())
+  super_title String
+  title       String
+  description String
+  button_cta  String
+  Homepage    Homepage? @relation(fields: [homepageId], references: [id], name: "Started")
+  homepageId  Int?
+}
+
+model Author {
+  id         Int       @id @default(autoincrement())
+  email      String    @unique
+  first_name String?
+  last_name  String
+  role       String
+  facebook   Boolean
+  linkedin   Boolean
+  X          Boolean
+  instagram  Boolean
+  Homepage   Homepage? @relation(fields: [homepageId], references: [id], name: "Authors")
+  homepageId Int       @default(1)
+  posts      Post[]
+}
+
+model Testimonials {
+  id           Int               @id @default(autoincrement())
+  super_title  String
+  title        String
+  description  String
+  testimonials TestimonialItem[] @relation("Testimonial")
+  Homepage     Homepage?         @relation(fields: [homepageId], references: [id], name: "HomepageTestimonials")
+  homepageId   Int
+}
+
+model TestimonialItem {
+  id                          Int           @id @default(autoincrement())
+  testimonial                 String
+  testimonial_author          String
+  testimonial_author_location String
+  Testimonials                Testimonials? @relation(fields: [testimonialsId], references: [id], name: "Testimonial")
+  testimonialsId              Int           @default(1)
+}
+
+model Join {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String
+  button_cta  String
+  Homepage    Homepage? @relation(fields: [homepageId], references: [id], name: "HomepageJoin")
+  homepageId  Int?      @default(1)
 }

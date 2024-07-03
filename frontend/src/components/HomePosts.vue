@@ -30,6 +30,12 @@
   </section>
 </template>
 
+<script setup>
+  const props = defineProps({
+    data: {}
+  })
+</script>
+
 <style scoped lang="scss">
 .posts {
   margin: r(128) auto;
@@ -38,13 +44,12 @@
 
 .postsGrid {
   display: grid;
-  grid-template-columns: r(733) r(517);
+  grid-template-columns: 58% 42%;
   gap: r(32);
 }
 
 .posts__Featured {
   width: 100%;
-  width: r(733);
   img {
     max-width: r(669);
     width: 100%;

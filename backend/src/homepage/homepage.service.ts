@@ -11,7 +11,7 @@ export class HomepageService {
   ): Promise<Homepage | null> {
     return this.prisma.homepage.findUnique({
       where: homepageWhereUniqueInput,
-      include: { posts: true },
+      // include: { posts: true },
     });
   }
 
@@ -30,13 +30,24 @@ export class HomepageService {
       cursor,
       where,
       orderBy,
-      include
+      include,
     });
   }
 
   findAll() {
     return this.prisma.homepage.findMany({
-      include: { posts: true },
+      include: {
+        posts: true,
+        homeAbout: true,
+        categories: true,
+        started: true,
+        authors: true,
+        homepage_testimonials: {
+          include: {
+            testimonials: true,
+          },
+        },
+      },
     });
   }
   // async post(

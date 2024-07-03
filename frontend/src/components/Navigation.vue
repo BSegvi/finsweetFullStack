@@ -26,20 +26,6 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
-import { ofetch } from "ofetch";
-
-const info = ref(null);
-
-// onMounted(async () => {
-//   try {
-//     info.value = await ofetch("http://localhost:3000/post/1");
-
-//     console.log(info.value);
-//   } catch (e) {
-//     console.dir(e);
-//   }
-// });
 </script>
 
 <style lang="scss">
@@ -82,5 +68,10 @@ const info = ref(null);
   font-weight: 700;
   font-size: r(18);
   line-height: r(24);
+  cursor: pointer;
+  opacity: .8;
+  &:hover {
+    opacity: 1;
+  }
 }
 </style>
