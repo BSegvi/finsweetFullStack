@@ -37,8 +37,22 @@ export class PostService {
     });
   }
 
+  // async featuredPost(params: {
+  //   orderBy: Prisma.PostOrderByWithRelationInput
+  // }) {
+  //   return this.prisma.post.findFirstOrThrow({
+  //     orderBy: {
+  //       published_date: 'desc'
+  //     }
+  //   })
+  // }
+
   findAll() {
-    return this.prisma.post.findMany();
+    return this.prisma.post.findMany({
+      include: {
+        author: true,
+      }
+    });
   }
 
   async updatePost(params: {

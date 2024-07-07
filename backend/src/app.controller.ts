@@ -7,10 +7,16 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
-import { Author as AuthorModel, Post as PostModel, Homepage as HomepageModel } from '@prisma/client';
+import {
+  Author as AuthorModel,
+  Post as PostModel,
+  Homepage as HomepageModel,
+  Categories as CategoriesModel,
+} from '@prisma/client';
 import { UserService } from './user/user.service';
 import { PostService } from './post/post.service';
 import { HomepageService } from './homepage/homepage.service';
+import { CategoriesService } from './categories/categories.service';
 
 @Controller()
 export class AppController {
@@ -18,6 +24,7 @@ export class AppController {
     private readonly userService: UserService,
     private readonly postService: PostService,
     private readonly homepageService: HomepageService,
+    private readonly categoriesService: CategoriesService,
   ) {}
 
   // @Get('post/:id')
@@ -53,6 +60,25 @@ export class AppController {
   @Get('homepage')
   async getHomepage(): Promise<HomepageModel[]> {
     return this.homepageService.findAll();
+  }
+
+  @Get('posts')
+  async getPosts(): Promise<PostModel[]> {
+    return this.postService.findAll();
+  }
+
+  @Get('featured-post')
+  async getFeaturedPost(
+    @Param('published_date') published_date: Date
+  ): Promise<PostModel[]> {
+    return this.postService.posts({
+      orderBy: { published_date: 'desc' },
+    });
+  }
+
+  @Get('categories')
+  async getCategories(): Promise<CategoriesModel[]> {
+    return this.categoriesService.findAllCategories();
   }
 
   // @Post('post')

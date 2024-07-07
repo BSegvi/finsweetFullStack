@@ -1,15 +1,15 @@
 <template>
   <nav class="navigationWrapper">
     <div class="navigation container">
-      <a href="/">
+      <RouterLink to="/">
         <img src="/icons/finsweetLogo.svg" alt="" />
-      </a>
+      </RouterLink>
       <ul class="navigation__List">
         <li>
-          <a href=""> Home </a>
+          <RouterLink to="/"> Home </RouterLink>
         </li>
         <li>
-          <a href=""> Blog </a>
+          <RouterLink to="/blog"> Blog </RouterLink>
         </li>
         <li>
           <a href=""> About Us </a>

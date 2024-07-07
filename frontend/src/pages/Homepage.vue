@@ -55,6 +55,7 @@ onMounted(async () => {
   try {
     data.value = await ofetch("http://localhost:3000/homepage");
     data.value = data.value[0];
+    console.log(data.value.categories)
     isLoaded.value = true;
   } catch (e) {
     console.dir(e);

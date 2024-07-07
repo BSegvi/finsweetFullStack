@@ -8,6 +8,11 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator proto {
+  provider = "prisma-generator-proto"
+  output   = "../__generated__"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -37,8 +42,10 @@ model Post {
   content        String?
   published      Boolean?  @default(false)
   published_date DateTime?
-  author         Author?   @relation(fields: [authorId], references: [id])
+  author         Author?   @relation(fields: [authorId, first_name, last_name], references: [id, first_name, last_name])
   authorId       Int?
+  first_name     String?
+  last_name      String?
   Homepage       Homepage? @relation(fields: [homepageId], references: [id], name: "HomepagePosts")
   homepageId     Int?
 }
@@ -84,6 +91,8 @@ model Author {
   Homepage   Homepage? @relation(fields: [homepageId], references: [id], name: "Authors")
   homepageId Int       @default(1)
   posts      Post[]
+
+  @@unique([id, first_name, last_name])
 }
 
 model Testimonials {
@@ -113,3 +122,10 @@ model Join {
   Homepage    Homepage? @relation(fields: [homepageId], references: [id], name: "HomepageJoin")
   homepageId  Int?      @default(1)
 }
+
+//Blog page
+
+// model Blog {
+//   id Int @id @default(autoincrement())  
+
+// }
