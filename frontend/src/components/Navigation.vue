@@ -18,7 +18,7 @@
           <a href=""> Contact Us </a>
         </li>
         <li>
-          <button class="navigation__ListSubscribeButton">Subscribe</button>
+          <button class="navigation__ListSubscribeButton"> Subscribe </button>
         </li>
       </ul>
     </div>
@@ -28,7 +28,7 @@
 <script setup>
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .navigationWrapper {
   background-color: #232536;
   padding: r(25);

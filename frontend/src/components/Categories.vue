@@ -81,6 +81,5 @@ const categoryImage = ref([
     image_src: "/icons/finsweetCategoriesTechnology.svg"  
   }
 
-]
-);
+]);
 </script>

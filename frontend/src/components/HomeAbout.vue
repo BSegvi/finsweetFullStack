@@ -1,8 +1,4 @@
 <template>
-  <!-- <div class="homeAbout__Before container">
-    <div class="homeAbout__Before1 ">about</div>
-    <div class="homeAbout__Before2 ">about</div>
-  </div> -->
   <div class="homeAbout container">
     <div class="homeAbout__Item" v-for="item in data">
       <h3 v-text="item.super_title"/>
@@ -14,9 +10,9 @@
 </template>
 
 <script setup>
-  const props = defineProps({
-    data: {}
-  })
+const props = defineProps({
+  data: {}
+})
 </script>
 
 <style scoped lang="scss">
@@ -28,7 +24,6 @@
   background-color: rgba(244, 240, 248, 1);
   padding-top: r(96);
   padding-bottom: r(96);
-  // max-width: r(1280);
   width: 100%;
   margin-bottom: r(128);
   &:before {
@@ -43,32 +38,6 @@
     top: r(-23);
     right: 0
   }
-}
-.homeAbout__Before {
-  display: flex;
-  flex-direction: row;
-  padding: 0;
-}
-
-.homeAbout__Before1, .homeAbout__Before2  {
-  display: block;
-  font-size: 0;
-  min-height: r(23);
-  max-height: r(23);
-}
-
-.homeAbout__Before1 {
-  max-width: r(850);
-  min-width: r(850);
-  background-color: rgba(255, 208, 80, 1);
-  margin-left: auto;
-
-}
-
-.homeAbout__Before2 {
-  max-width: r(250);
-  min-width: r(250);
-  background-color: rgba(89, 46, 169, 1);
 }
 
 .homeAbout__Item {

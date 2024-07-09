@@ -19,12 +19,13 @@
 </template>
 
 <script setup>
-import JoinUs from '@/components/JoinUs.vue';
 import { ofetch } from 'ofetch';
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router'
+import JoinUs from '@/components/JoinUs.vue';
 
 const route = useRoute()
+
 const data = ref(null)
 const isLoaded = ref(false)
 
@@ -37,57 +38,55 @@ onMounted(async () => {
     console.dir(e);
   }
 })
-  
 </script>
 
 <style scoped lang="scss">
-
 .blogDetail {
   margin-top: r(128);
 }
-  .blogDetail__Header {
-    max-width: r(768);
-    width: 100%;
-    margin: 0 auto;
 
-    h1 {
+.blogDetail__Header {
+  max-width: r(768);
+  width: 100%;
+  margin: 0 auto;
+  h1 {
+    font-family: 'Sen';
+    font-size: r(48);
+    line-height: r(64);
+    letter-spacing: r(-2);
+    font-weight: 700;
+    margin: r(24) 0 r(34);
+  }
+}
+
+.blogDetail__HeaderAuthorDate {
+  display: flex;
+  align-items: center;
+  gap: r(16);
+  img {
+    max-width: r(48);
+    min-width: r(48);
+    min-height: r(48);
+    max-height: r(48);
+  }
+
+  > div {
+    h3 {
       font-family: 'Sen';
-      font-size: r(48);
-      line-height: r(64);
-      letter-spacing: r(-2);
+      font-size: r(28);
+      line-height: r(40);
+      letter-spacing: r(-1);
       font-weight: 700;
-      margin: r(24) 0 r(34);
-    }
-  }
-
-  .blogDetail__HeaderAuthorDate {
-    display: flex;
-    align-items: center;
-    gap: r(16);
-    img {
-      max-width: r(48);
-      min-width: r(48);
-      min-height: r(48);
-      max-height: r(48);
+      color: rgba(89, 46, 169, 1);
+      margin-bottom: r(-4);
     }
 
-    > div {
-      h3 {
-        font-family: 'Sen';
-        font-size: r(28);
-        line-height: r(40);
-        letter-spacing: r(-1);
-        font-weight: 700;
-        color: rgba(89, 46, 169, 1);
-        margin-bottom: r(-4 );
-      }
-
-      time {
-        font-size: r(16);
-        line-height: r(28);
-        font-weight: 400;
+    time {
+      font-size: r(16);
+      line-height: r(28);
+      font-weight: 400;
       color: rgba(109, 110, 118, 1);
-      }
     }
   }
+}
 </style>

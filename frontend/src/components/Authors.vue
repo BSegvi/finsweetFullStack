@@ -87,7 +87,7 @@
 </style>
 
 <script setup>
-  const props = defineProps({
-    data: {}
-  })
+const props = defineProps({
+  data: {}
+})
 </script>

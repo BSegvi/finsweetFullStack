@@ -33,9 +33,9 @@
 </template>
 
 <script setup>
-  const props = defineProps({
-    data: {}
-  })
+const props = defineProps({
+  data: {}
+})
 </script>
 
 <style scoped lang="scss">

@@ -1,5 +1,3 @@
-
-
 html {
   font-size: var(--font-size);
   @media (max-width: 1200px) {
@@ -18,7 +16,6 @@ html {
     --font-size: 12px;
   }
 }
-
 
 @function r($value) {
   @return (calc($value / 16) * 1rem);

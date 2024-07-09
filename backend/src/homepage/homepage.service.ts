@@ -11,7 +11,6 @@ export class HomepageService {
   ): Promise<Homepage | null> {
     return this.prisma.homepage.findUnique({
       where: homepageWhereUniqueInput,
-      // include: { posts: true },
     });
   }
 
@@ -50,11 +49,4 @@ export class HomepageService {
       },
     });
   }
-  // async post(
-  //   postWhereUniqueInput: Prisma.PostWhereUniqueInput,
-  // ): Promise<Post | null> {
-  //   return this.prisma.post.findUnique({
-  //     where: postWhereUniqueInput,
-  //   });
-  // }
 }

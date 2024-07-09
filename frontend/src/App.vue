@@ -4,7 +4,7 @@ import Footer from './components/Footer.vue'
 
 </script>
 
-<template v-if="isLoaded">
+<template>
   <Navigation />
   <router-view />
   <Footer />

@@ -8,12 +8,12 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
+import { ofetch } from "ofetch";
 import JoinUs from "@/components/JoinUs.vue";
 import Categories from "@/components/Categories.vue";
 import FeaturedPosts from "@/components/FeaturedPosts.vue";
 import AllPosts from "@/components/AllPosts.vue";
-import { ref, onMounted } from "vue";
-import { ofetch } from "ofetch";
 
 const categories = ref(null);
 const isLoaded = ref(false);

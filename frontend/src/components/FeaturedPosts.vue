@@ -11,7 +11,7 @@
         <p v-text="data.content"/>
         <RouterLink to="">
           <button class="readMore__YellowButton">
-            neoze
+            Read More
           </button>
         </RouterLink>
       </div>
@@ -21,11 +21,9 @@
 </template>
 
 <script setup>
-  const props = defineProps({
-    data: {}
-  })
-
-  console.log(props.data)
+const props = defineProps({
+  data: {}
+})
 </script>
 
 <style lang="scss" scoped>
