@@ -67,6 +67,15 @@ export class AppController {
     return this.postService.findAll();
   }
 
+  
+  @Get('blog-detail/:id')
+  async publishPost(@Param('id') id: string): Promise<PostModel> {
+    return this.postService.getPost({
+      where: { id: Number(id) },
+      data: { published: true },
+    });
+  }
+
   @Get('featured-post')
   async getFeaturedPost(
     @Param('published_date') published_date: Date

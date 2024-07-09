@@ -55,7 +55,7 @@ export class PostService {
     });
   }
 
-  async updatePost(params: {
+  async getPost(params: {
     where: Prisma.PostWhereUniqueInput;
     data: Prisma.PostUpdateInput;
   }): Promise<Post> {

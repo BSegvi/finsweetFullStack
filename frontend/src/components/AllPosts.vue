@@ -2,12 +2,14 @@
   <div class="allPosts container">
     <h1>All posts</h1>
     <div class="allPosts__SinglePost" v-for="(post, index) in loadedPosts">
-      <img :src="images[index].imageSrc" alt="">
-      <div class="allPosts__SinglePostContent">
-        <h3/>
-        <h2 v-text="post.title"/>
-        <p v-text="post.content"/>
-      </div>
+      <RouterLink :to="`/blog-post/${post.id}`" class="allPosts__SinglePostLink">
+        <img :src="images[index].imageSrc" alt="">
+        <div class="allPosts__SinglePostContent">
+          <h3/>
+          <h2 v-text="post.title"/>
+          <p v-text="post.content"/>
+        </div>
+      </RouterLink>
     </div>
     
     <div class="allPosts__ReadMoreButton">
@@ -64,7 +66,7 @@
 
 <style scoped lang="scss">
 .allPosts {
-  margin: r(64) 0;
+  margin: r(64) auto;
   h1 {
     font-family: 'Sen';
     font-size: r(48);
@@ -76,7 +78,7 @@
   }
 }
 
-.allPosts__SinglePost {
+.allPosts__SinglePostLink {
   display: flex;
   align-items: center;
   gap: r(32);

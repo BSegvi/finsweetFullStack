@@ -17,13 +17,15 @@
       <div class="posts__All">
         <h2>All Posts</h2>
         <div v-for="item in data.posts">
-          <div class="posts__AllAuthorDate">
-            <span>Autor</span>
-            <time>
-              {{ new Date(item.published_date).toLocaleDateString("hr-HR") }}
-            </time>
-          </div>
-          <h2 v-text="item.title" />
+          <RouterLink :to="`/blog-detail/${item.id}`">
+            <div class="posts__AllAuthorDate">
+              <span>Autor</span>
+              <time>
+                {{ new Date(item.published_date).toLocaleDateString("hr-HR") }}
+              </time>
+            </div>
+            <h2 v-text="item.title" />
+          </RouterLink>
         </div>
       </div>
     </div>
