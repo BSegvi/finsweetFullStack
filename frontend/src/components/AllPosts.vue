@@ -1,25 +1,27 @@
 <template>
   <div class="allPosts container">
-    <h1>All posts</h1>
-    <div class="allPosts__SinglePost" v-for="(post, index) in loadedPosts">
-      <RouterLink
-        :to="`/blog-post/${post.id}`"
-        class="allPosts__SinglePostLink"
-      >
-        <img :src="images[index].imageSrc" alt="" />
-        <div class="allPosts__SinglePostContent">
-          <h3 />
-          <h2 v-text="post.title" />
-          <p v-text="post.content" />
-        </div>
-      </RouterLink>
+    <h1>{{props.title}}</h1>
+    <div :class="{ allPosts__SinglePostFlex: isFlex }">
+      <div class="allPosts__SinglePost" v-for="(post, index) in loadedPosts">
+        <RouterLink
+          :to="`/blog-detail/${post.id}`"
+          class="allPosts__SinglePostLink"
+        >
+          <img :src="images[index].imageSrc" alt="" />
+          <div class="allPosts__SinglePostContent">
+            <h3 />
+            <h2 v-text="post.title" />
+            <p v-text="post.content" />
+          </div>
+        </RouterLink>
+      </div>
     </div>
 
     <div class="allPosts__ReadMoreButton">
       <button
         @click="loadMore(2)"
         class="readMore__YellowButton"
-        v-if="!isDisabled"
+        v-if="!isDisabled && !isFlex"
       >
         Load More
       </button>
@@ -32,6 +34,13 @@ import { onMounted, ref } from "vue";
 
 const props = defineProps({
   data: {},
+  isFlex: {
+    default: false,
+  },
+  loadHowMany: {
+    default: 3
+  },
+  title: String
 });
 
 const numberOfPosts = ref(2);
@@ -39,7 +48,13 @@ const loadedPosts = ref([]);
 const isDisabled = ref(false);
 
 onMounted(() => {
-  loadedPosts.value = props.data.slice(0, numberOfPosts.value);
+  console.log(props.loadHowMany)
+  if(!props.isFlex) {
+    loadedPosts.value = props.data.slice(0, numberOfPosts.value);
+  }
+  else {
+    loadedPosts.value = props.data.slice(0, props.loadHowMany);
+  }
 });
 
 const images = [
@@ -126,5 +141,26 @@ function loadMore(howMany) {
 
 .allPosts__ReadMoreButton {
   text-align: center;
+}
+
+.allPosts__SinglePostFlex {
+  display: flex;
+  gap: r(32);
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(109, 110, 118, 0.3);
+
+  .allPosts__SinglePost {
+    max-width: r(405);
+    width: 100%;
+  }
+
+  .allPosts__SinglePostLink {
+    display: block;
+    img {
+      min-height: r(318);
+      max-height: r(318);
+      object-fit: cover;
+    }
+  }
 }
 </style>

@@ -3,9 +3,11 @@
     <h2>Choose a Category</h2>
     <div class="categories__Flex" >
       <div class="categories__FlexItem" v-for="(item, index) in data">
-        <img :src="categoryImage[index].image_src" alt="" />
-        <h3 v-text="item.title"/>
-        <p v-text="item.description"/>
+        <RouterLink>
+          <img :src="categoryImage[index].image_src" alt="" />
+          <h3 v-text="item.title"/>
+          <p v-text="item.description"/>
+        </RouterLink>
       </div>
     </div>
   </div>

@@ -8,28 +8,30 @@
       />
       <div class="homepage__HeroTextWrapper container">
         <div class="homepage__HeroText">
-          <h3 v-text="data.super_title" />
-          <h2 v-text="data.title" />
+          <h3 v-text="homepageData.super_title" />
+          <h2 v-text="homepageData.title" />
           <div class="homepage__HeroAuthorDate">
-            <span v-text="data.author" />
-            <time>{{ new Date(data.date).toLocaleDateString("hr-HR") }}</time>
+            <span v-text="homepageData.author" />
+            <time>{{
+              new Date(homepageData.date).toLocaleDateString("hr-HR")
+            }}</time>
           </div>
-          <p v-text="data.description" />
+          <p v-text="homepageData.description" />
           <a href="">
             <button class="readMore__YellowButton">
-              {{ data.button_cta }}
+              {{ homepageData.button_cta }}
             </button>
           </a>
         </div>
       </div>
     </div>
-    <HomePosts :data="data"/>
-    <HomeAbout :data="data.homeAbout"/>
-    <Categories :data="data.categories"/>
-    <Started :data="data.started[0]"/>
-    <Authors :data="data.authors"/>
+    <HomePosts :data="homepageData" />
+    <HomeAbout :data="homepageData.homeAbout" />
+    <Categories :data="homepageData.categories" />
+    <Started :data="homepageData.started[0]" />
+    <Authors :data="homepageData.authors" />
     <Companies />
-    <Testimonials :data="data.homepage_testimonials[0]"/>
+    <Testimonials :data="homepageData.homepage_testimonials[0]" />
     <JoinUs />
     <Footer />
   </section>
@@ -48,14 +50,17 @@ import Testimonials from "@/components/Testimonials.vue";
 import JoinUs from "@/components/JoinUs.vue";
 import Footer from "@/components/Footer.vue";
 
-const data = ref(null);
+const homepageData = ref([]);
+const featuredHomepagePost = ref([]);
 const isLoaded = ref(false);
 
 onMounted(async () => {
   try {
-    data.value = await ofetch("http://localhost:3000/homepage");
-    data.value = data.value[0];
-    console.log(data.value.categories)
+    [homepageData.value, featuredHomepagePost.value] = await Promise.all([
+      ofetch("http://localhost:3000/homepage"),
+      ofetch("http://localhost:3000/featured-post"),
+    ]);
+    homepageData.value = homepageData.value[0];
     isLoaded.value = true;
   } catch (e) {
     console.dir(e);
@@ -63,7 +68,13 @@ onMounted(async () => {
 });
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
+.homepage {
+  .homeAbout__Stats {
+    display: none;
+  }
+}
+
 .homepage__Hero {
   position: relative;
   background: radial-gradient(

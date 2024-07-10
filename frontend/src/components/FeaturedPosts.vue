@@ -9,7 +9,7 @@
           <time v-text="new Date(data.published_date).toLocaleDateString('hr-HR')"/>
         </div>
         <p v-text="data.content"/>
-        <RouterLink to="">
+        <RouterLink :to="`/blog-detail/${data.id}`">
           <button class="readMore__YellowButton">
             Read More
           </button>
@@ -29,6 +29,7 @@ const props = defineProps({
 <style lang="scss" scoped>
 .featuredPosts__Wrapper {
   display: flex;
+  justify-content: space-between;
 }
 
 .featuredPosts__Image {

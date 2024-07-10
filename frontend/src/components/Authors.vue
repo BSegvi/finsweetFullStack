@@ -32,7 +32,8 @@
 }
 
 .authors__List {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: r(32);
   justify-content: space-around;
 }

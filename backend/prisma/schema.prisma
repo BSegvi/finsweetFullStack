@@ -2,11 +2,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-generator proto {
-  provider = "prisma-generator-proto"
-  output   = "../__generated__"
-}
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -115,4 +110,26 @@ model Join {
   button_cta  String
   Homepage    Homepage? @relation(fields: [homepageId], references: [id], name: "HomepageJoin")
   homepageId  Int?      @default(1)
+}
+
+model AboutPage {
+  id      Int                @id @default(autoincrement())
+  content AboutPageContent[] @relation("AboutPageContent")
+}
+
+model AboutUsSection {
+  id          Int     @id @default(autoincrement())
+  super_title String
+  title       String
+  description String?
+  link_cta    String
+}
+
+model AboutPageContent {
+  id          Int        @id @default(autoincrement())
+  title       String
+  small_title String
+  description String
+  AboutPage   AboutPage? @relation(fields: [aboutPageId], references: [id], name: "AboutPageContent")
+  aboutPageId Int
 }

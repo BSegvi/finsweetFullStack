@@ -1,7 +1,7 @@
 <template>
   <section class="blog" v-if="isLoaded">
     <FeaturedPosts :data="sortedPosts[0]" />
-    <AllPosts :data="sortedPosts"/>
+    <AllPosts :data="sortedPosts" isFlex="false" title="All posts"/>
     <Categories :data="categories" />
     <JoinUs />
   </section>

@@ -3,10 +3,13 @@ import {
   Post as PostModel,
   Homepage as HomepageModel,
   Categories as CategoriesModel,
+  AboutUsSection,
+  AboutPage
 } from '@prisma/client';
 import { PostService } from './post/post.service';
 import { HomepageService } from './homepage/homepage.service';
 import { CategoriesService } from './categories/categories.service';
+import { AboutService } from './about/about.service';
 
 @Controller()
 export class AppController {
@@ -14,6 +17,7 @@ export class AppController {
     private readonly postService: PostService,
     private readonly homepageService: HomepageService,
     private readonly categoriesService: CategoriesService,
+    private readonly aboutService: AboutService,
   ) {}
 
   @Get('homepage')
@@ -46,5 +50,15 @@ export class AppController {
   @Get('categories')
   async getCategories(): Promise<CategoriesModel[]> {
     return this.categoriesService.findAllCategories();
+  }
+
+  @Get('about-section')
+  async findAboutSection(): Promise<AboutUsSection[]> {
+    return this.aboutService.findAboutSection();
+  }
+
+  @Get('about-page')
+  async findAboutPage(): Promise<AboutPage[]> {
+    return this.aboutService.findAboutPage();
   }
 }
