@@ -15,10 +15,12 @@
           <RouterLink to="/about"> About Us </RouterLink>
         </li>
         <li>
-          <a href=""> Contact Us </a>
+          <RouterLink to="/contact"> Contact Us </RouterLink>
         </li>
         <li>
-          <button class="navigation__ListSubscribeButton"> Subscribe </button>
+          <slot>
+            <RouterLink to="/privacy-policy" class="navigation__ListPrivacy"> Privacy policy </RouterLink>
+          </slot>
         </li>
       </ul>
     </div>
@@ -26,6 +28,15 @@
 </template>
 
 <script setup>
+import { onMounted, ref } from 'vue';
+
+const isLoaded = ref(false)
+
+const props = defineProps({
+  isButtonVisible: {},
+  isAnchorVisible: {},
+})
+console.log(props.isAnchorVisible)
 </script>
 
 <style scoped lang="scss">
@@ -55,23 +66,6 @@
       line-height: r(28);
       font-weight: 400;
     }
-  }
-}
-
-.navigation__ListSubscribeButton {
-  font-family: 'Sen';
-  background-color: white;
-  max-width: r(179);
-  width: 100%;
-  padding: r(16) r(48);
-  color: #232536;
-  font-weight: 700;
-  font-size: r(18);
-  line-height: r(24);
-  cursor: pointer;
-  opacity: .8;
-  &:hover {
-    opacity: 1;
   }
 }
 </style>

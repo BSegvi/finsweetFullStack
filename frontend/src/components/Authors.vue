@@ -3,16 +3,18 @@
     <h1>List of Authors</h1>
     <div class="authors__List">
       <div v-for="author in data" class="author__ListItem">
-        <img src="/icons/finsweetAuthor.svg" alt="">
-        <h4>{{ author.first_name }} {{ author.last_name }}</h4>
-        <span >{{ author.role }} @Company</span>
-        <div class="authors__ListSocial">
-          <img src="/icons/finsweetFacebook.svg" alt="" v-if="author.facebook">
-          <img src="/icons/finsweetTwitter.svg" alt="" v-if="author.twitter">
-          <img src="/icons/finsweetInstagram.svg" alt="" v-if="author.instagram">
-          <img src="/icons/finsweetLinkedin.svg" alt="" v-if="author.linkedin">
+          <RouterLink :to="`author/${author.id}`">
+            <img src="/icons/finsweetAuthor.svg" alt="">
+            <h4>{{ author.first_name }} {{ author.last_name }}</h4>
+            <span >{{ author.role }} @Company</span>
+            <div class="authors__ListSocial">
+              <img src="/icons/finsweetFacebook.svg" alt="" v-if="author.facebook">
+              <img src="/icons/finsweetTwitter.svg" alt="" v-if="author.twitter">
+              <img src="/icons/finsweetInstagram.svg" alt="" v-if="author.instagram">
+              <img src="/icons/finsweetLinkedin.svg" alt="" v-if="author.linkedin">
+            </div>
+          </RouterLink>
         </div>
-      </div>
     </div>
   </div>
 </template>
@@ -36,6 +38,9 @@
   grid-template-columns: repeat(4, 1fr);
   gap: r(32);
   justify-content: space-around;
+  @media (max-width: '1200px') {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .author__ListItem {

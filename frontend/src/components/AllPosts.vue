@@ -1,7 +1,7 @@
 <template>
   <div class="allPosts container">
     <h1>{{props.title}}</h1>
-    <div :class="{ allPosts__SinglePostFlex: isFlex }">
+    <div class="allPosts__Wrapper" :class="{ allPosts__SinglePostFlex: isFlex }">
       <div class="allPosts__SinglePost" v-for="(post, index) in loadedPosts">
         <RouterLink
           :to="`/blog-detail/${post.id}`"

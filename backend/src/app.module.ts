@@ -7,10 +7,12 @@ import { UserService } from './user/user.service';
 import { PrismaService } from './prisma/prisma.service';
 import { CategoriesService } from './categories/categories.service';
 import { AboutService } from './about/about.service';
+import { CategoriesOnPostsService } from './categoriesOnPosts/categoriesOnPosts.service';
+import { AuthorService } from './author/author.service';
 
 @Module({
   imports: [],
   controllers: [AppController],
-  providers: [AppService, PrismaService, PostService, HomepageService, UserService, CategoriesService, AboutService],
+  providers: [AppService, PrismaService, PostService, HomepageService, UserService, CategoriesService, AboutService, CategoriesOnPostsService, AuthorService],
 })
 export class AppModule {}

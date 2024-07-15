@@ -3,7 +3,7 @@
     <h2>Choose a Category</h2>
     <div class="categories__Flex" >
       <div class="categories__FlexItem" v-for="(item, index) in data">
-        <RouterLink>
+        <RouterLink :to="`/category/${item.id}`">
           <img :src="categoryImage[index].image_src" alt="" />
           <h3 v-text="item.title"/>
           <p v-text="item.description"/>

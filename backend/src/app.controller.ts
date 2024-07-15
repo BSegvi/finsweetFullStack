@@ -2,14 +2,19 @@ import { Controller, Get, Param } from '@nestjs/common';
 import {
   Post as PostModel,
   Homepage as HomepageModel,
-  Categories as CategoriesModel,
+  Category as CategoryModel,
   AboutUsSection,
-  AboutPage
+  AboutPage,
+  CategoriesOnPosts as CategoriesOnPostsModel,
+  Author as AuthorModel
 } from '@prisma/client';
 import { PostService } from './post/post.service';
 import { HomepageService } from './homepage/homepage.service';
 import { CategoriesService } from './categories/categories.service';
 import { AboutService } from './about/about.service';
+import { title } from 'process';
+import { CategoriesOnPostsService } from './categoriesOnPosts/categoriesOnPosts.service';
+import { AuthorService } from './author/author.service';
 
 @Controller()
 export class AppController {
@@ -18,6 +23,8 @@ export class AppController {
     private readonly homepageService: HomepageService,
     private readonly categoriesService: CategoriesService,
     private readonly aboutService: AboutService,
+    private readonly categoriesOnPostsService: CategoriesOnPostsService,
+    private readonly authorService: AuthorService
   ) {}
 
   @Get('homepage')
@@ -47,8 +54,22 @@ export class AppController {
     });
   }
 
+  @Get('post/:id')
+  async getPostFromCategory(@Param('id') id: string): Promise<PostModel[]> {
+    return this.postService.posts({
+      where: { id: Number(id) },
+    });
+  }
+
+  // @Get('category/:id')
+  // async categoryPosts(@Param('postId') postId: string): Promise<CategoryModel[]> {
+  //   return this.categoriesService.categoryPosts({
+  //     where: { postId: Number(postId) },
+  //   });
+  // }
+
   @Get('categories')
-  async getCategories(): Promise<CategoriesModel[]> {
+  async getCategories(): Promise<CategoryModel[]> {
     return this.categoriesService.findAllCategories();
   }
 
@@ -61,4 +82,21 @@ export class AppController {
   async findAboutPage(): Promise<AboutPage[]> {
     return this.aboutService.findAboutPage();
   }
+
+  @Get('category/:id') 
+  async findAllCategoriesOnPosts(@Param('id') id: string): Promise<CategoriesOnPostsModel[]> {
+    return this.categoriesOnPostsService.findAllCategoriesOnPosts(Number(id))
+  }
+  
+  @Get('author/:id') 
+  async findAuthorDetail(@Param('id') id: string): Promise<AuthorModel[]> {
+    return this.authorService.findAuthorDetail(Number(id))
+  }
+
+  // @Get('post/:id')
+  // async getPostFromCategory(@Param('id') id: string): Promise<PostModel[]> {
+  //   return this.postService.posts({
+  //     where: { id: Number(id) },
+  //   });
+  // }
 }

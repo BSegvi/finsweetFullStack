@@ -8,20 +8,20 @@
       />
       <div class="homepage__HeroTextWrapper container">
         <div class="homepage__HeroText">
-          <h3 v-text="homepageData.super_title" />
-          <h2 v-text="homepageData.title" />
+          <h3 v-text="featuredHomepagePost[0].super_title" />
+          <h2 v-text="featuredHomepagePost[0].title" />
           <div class="homepage__HeroAuthorDate">
-            <span v-text="homepageData.author" />
+            <span>{{ featuredHomepagePost[0].first_name }} {{ featuredHomepagePost[0].last_name }}</span>
             <time>{{
-              new Date(homepageData.date).toLocaleDateString("hr-HR")
+              new Date(featuredHomepagePost[0].published_date).toLocaleDateString("hr-HR")
             }}</time>
           </div>
-          <p v-text="homepageData.description" />
-          <a href="">
+          <p v-text="featuredHomepagePost[0].content" />
+          <RouterLink :to="`/blog-detail/${featuredHomepagePost[0].id}`">
             <button class="readMore__YellowButton">
               {{ homepageData.button_cta }}
             </button>
-          </a>
+          </RouterLink>
         </div>
       </div>
     </div>
@@ -33,7 +33,6 @@
     <Companies />
     <Testimonials :data="homepageData.homepage_testimonials[0]" />
     <JoinUs />
-    <Footer />
   </section>
 </template>
 
@@ -48,7 +47,6 @@ import Authors from "@/components/Authors.vue";
 import Companies from "@/components/Companies.vue";
 import Testimonials from "@/components/Testimonials.vue";
 import JoinUs from "@/components/JoinUs.vue";
-import Footer from "@/components/Footer.vue";
 
 const homepageData = ref([]);
 const featuredHomepagePost = ref([]);
@@ -62,6 +60,7 @@ onMounted(async () => {
     ]);
     homepageData.value = homepageData.value[0];
     isLoaded.value = true;
+    console.log(featuredHomepagePost.value)
   } catch (e) {
     console.dir(e);
   }

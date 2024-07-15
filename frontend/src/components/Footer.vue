@@ -39,9 +39,14 @@
 
 <script setup>
 import Navigation from "@/components/Navigation.vue";
+
+// const props = defineProps({
+//   isButtonVisible: {},
+//   isAnchorVisible: {}
+// })
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .footer {
   background-color: rgba(35, 37, 54, 1);
 }
