@@ -5,7 +5,7 @@
       <h3 v-text="data.super_title" />
       <h2 v-text="data.title" />
       <p v-text="data.description" />
-      <button class="readMore__YellowButton">{{ data.button_cta }}</button>
+      <RouterLink to="/about" class="readMore__YellowButton">{{ data.button_cta }}</RouterLink>
     </div>
   </div>
 </template>

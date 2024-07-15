@@ -36,7 +36,6 @@ const props = defineProps({
   isButtonVisible: {},
   isAnchorVisible: {},
 })
-console.log(props.isAnchorVisible)
 </script>
 
 <style scoped lang="scss">

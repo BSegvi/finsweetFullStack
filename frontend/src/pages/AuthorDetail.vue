@@ -26,10 +26,8 @@ onMounted(async () => {
   } catch(e) {
     console.dir(e)
   }
-  console.log(authorDetail.value)
 });
 
-console.log(router.fullPath)
 </script>
 
 <style lang="scss">

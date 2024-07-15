@@ -18,7 +18,7 @@
       <h3 v-text="item.super_title" />
       <h2 v-text="item.title" />
       <p v-text="item.description" />
-      <a href="" v-if="item.link_cta">{{ item.link_cta }}</a>
+      <RouterLink to="about" v-if="item.link_cta">{{ item.link_cta }}</RouterLink>
     </div>
   </div>
 </template>

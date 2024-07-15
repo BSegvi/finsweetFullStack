@@ -11,7 +11,13 @@
           <h3 v-text="featuredHomepagePost[0].super_title" />
           <h2 v-text="featuredHomepagePost[0].title" />
           <div class="homepage__HeroAuthorDate">
-            <span>{{ featuredHomepagePost[0].first_name }} {{ featuredHomepagePost[0].last_name }}</span>
+            <p>
+              <span>
+                By
+              </span>
+              {{ featuredHomepagePost[0].first_name }} {{ featuredHomepagePost[0].last_name }}
+
+            </p>
             <time>{{
               new Date(featuredHomepagePost[0].published_date).toLocaleDateString("hr-HR")
             }}</time>
@@ -25,7 +31,7 @@
         </div>
       </div>
     </div>
-    <HomePosts :data="homepageData" />
+    <HomePosts :data="homepageData" :featured-posts="featuredHomepagePost"/>
     <HomeAbout :data="homepageData.homeAbout" />
     <Categories :data="homepageData.categories" />
     <Started :data="homepageData.started[0]" />
@@ -60,7 +66,6 @@ onMounted(async () => {
     ]);
     homepageData.value = homepageData.value[0];
     isLoaded.value = true;
-    console.log(featuredHomepagePost.value)
   } catch (e) {
     console.dir(e);
   }
@@ -120,8 +125,13 @@ onMounted(async () => {
     margin: r(24) 0;
   }
 
-  p {
-    margin: r(16) 0 r(48);
+  > p {
+    max-width: r(599);
+    width: 100%;
+    font-size: r(16);
+    line-height: r(28);
+    font-weight: 400;
+    margin-bottom: r(48);
   }
 }
 
@@ -129,5 +139,21 @@ onMounted(async () => {
   font-size: r(16);
   line-height: r(28);
   font-weight: 400;
+  display: flex;
+  align-items: center;
+  margin: r(24) 0 r(16);
+
+  p {
+    border-right: 1px solid white;
+    padding-right: r(12);
+    color: rgba(255, 208, 80, 1);
+    span {
+      color: white;
+    }
+  }
+
+  time {
+    padding-left: r(12);
+  }
 }
 </style>

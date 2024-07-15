@@ -15,7 +15,6 @@
 const props = defineProps({
   data: {},
 });
-console.log(props.data);
 </script>
 
 <style lang="scss" scoped>

@@ -38,7 +38,6 @@ const categoryData = ref({});
 const isLoaded = ref(false);
 const posts = ref([]);
 const allCategories = ref([]);
-console.log(router.fullPath);
 
 onMounted(async () => {
   [categoryData.value, allCategories.value] = await Promise.all([
@@ -46,7 +45,6 @@ onMounted(async () => {
     ofetch("http://localhost:3000/categories"),
   ]);
   isLoaded.value = true;
-  console.log("here", allCategories.value);
   categoryData.value.forEach((element) => {
     posts.value.push(JSON.parse(JSON.stringify(element.post)));
   });

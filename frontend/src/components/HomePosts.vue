@@ -6,20 +6,29 @@
         <div class="posts__FeaturedContent">
           <img src="/images/finsweetHomepagePosts.png" alt="" />
           <div class="posts__AuthorDate">
-            <span>John Doe</span>
-            <time>datum</time>
+            <p>
+              <span>By</span> 
+              {{ featuredPosts[0].first_name }} {{ featuredPosts[0].last_name }}
+            </p>
+            <time>{{ new Date(featuredPosts[0].published_date).toLocaleDateString("hr-HR")  }}</time>
           </div>
           <h2 v-text="data.posts[0].title" />
           <p v-text="data.posts[0].content" />
-          <button class="readMore__YellowButton">{{ data.button_cta }}</button>
+          <RouterLink :to="`blog-detail/${featuredPosts[0].id}`" class="readMore__YellowButton">{{ data.button_cta }}</RouterLink>
         </div>
       </div>
       <div class="posts__All">
-        <h2>All Posts</h2>
+        <div class="posts__AllTitle">
+          <h2>All Posts</h2>
+          <RouterLink to="/blog">View All</RouterLink>
+        </div>
         <div v-for="item in data.posts">
           <RouterLink :to="`/blog-detail/${item.id}`">
             <div class="posts__AllAuthorDate">
-              <span>Autor</span>
+              <p>
+                <span>By</span>
+                {{ item.first_name }} {{ item.last_name }}
+              </p>
               <time>
                 {{ new Date(item.published_date).toLocaleDateString("hr-HR") }}
               </time>
@@ -34,7 +43,8 @@
 
 <script setup>
 const props = defineProps({
-  data: {}
+  data: {},
+  featuredPosts: {}
 })
 </script>
 
@@ -76,7 +86,7 @@ const props = defineProps({
     margin: r(16) 0;
   }
 
-  p {
+  > p {
     font-family: 'Inter';
     font-size: r(16);
     line-height: r(28);
@@ -86,7 +96,20 @@ const props = defineProps({
 }
 
 .posts__AuthorDate {
-  margin-top: r(32);
+  margin: r(32) 0 r(16);
+  display: flex;
+  p {
+    border-right: 1px solid rgba(76, 76, 76, 1);
+    padding-right: r(12);
+    color: rgba(89, 46, 169, 1);
+    span {
+      color: rgba(76, 76, 76, 1);
+    }
+  }
+
+  time {
+    padding-left: r(12);
+  }
 }
 
 .posts__All {
@@ -97,7 +120,7 @@ const props = defineProps({
     letter-spacing: r(-2);
   }
 
-  > div {
+  > div:not(:first-of-type) {
     max-width: r(517);
     width: 100%;
     padding: r(32) r(32) r(25);
@@ -115,12 +138,43 @@ const props = defineProps({
   }
 }
 
+.posts__AllTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: r(32);
+  > h2:first-of-type {
+    font-size: r(36);
+    line-height: r(48);
+    letter-spacing: r(-2);
+  }
+
+  a {
+    font-size: r(16);
+    line-height: r(28);
+    font-weight: 400;
+    color: rgba(89, 46, 169, 1);
+  }
+}
+
 .posts__AllAuthorDate {
-  max-width: r(199);
+  display: flex;
   width: 100%;
   margin-bottom: r(8);
   font-size: r(14);
   line-height: r(20);
   font-weight: 500;
+  p {
+    border-right: 1px solid rgba(76, 76, 76, 1);
+    padding-right: r(12);
+    color: rgba(89, 46, 169, 1);
+    span {
+      color: rgba(76, 76, 76, 1);
+    }
+  }
+
+  time {
+    padding-left: r(12);
+  }
 }
 </style>

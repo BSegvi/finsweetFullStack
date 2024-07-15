@@ -11,14 +11,11 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
 
   const props = defineProps({
   data: {}
 })
-onMounted(() => {
-  console.log(props.data)
-})
+
 </script>
 
 <style lang="scss" scoped>

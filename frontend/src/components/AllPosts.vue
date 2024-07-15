@@ -48,7 +48,6 @@ const loadedPosts = ref([]);
 const isDisabled = ref(false);
 
 onMounted(() => {
-  console.log(props.loadHowMany)
   if(!props.isFlex) {
     loadedPosts.value = props.data.slice(0, numberOfPosts.value);
   }
