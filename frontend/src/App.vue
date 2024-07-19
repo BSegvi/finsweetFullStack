@@ -6,7 +6,9 @@ import Footer from './components/Footer.vue'
 
 <template>
   <Navigation >
-    <button class="navigation__ListSubscribeButton"> Subscribe </button>
+    <button class="navigation__ListSubscribeButton"> 
+      <a href="#joinUs"> Subscribe </a>
+    </button>
   </Navigation>
   <router-view />
   <Footer />

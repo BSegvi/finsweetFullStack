@@ -16,13 +16,15 @@
                 By
               </span>
               {{ featuredHomepagePost[0].first_name }} {{ featuredHomepagePost[0].last_name }}
-
             </p>
+
             <time>{{
               new Date(featuredHomepagePost[0].published_date).toLocaleDateString("hr-HR")
             }}</time>
           </div>
+
           <p v-text="featuredHomepagePost[0].content" />
+          
           <RouterLink :to="`/blog-detail/${featuredHomepagePost[0].id}`">
             <button class="readMore__YellowButton">
               {{ homepageData.button_cta }}

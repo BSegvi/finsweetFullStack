@@ -11,11 +11,9 @@
 </template>
 
 <script setup>
-
-  const props = defineProps({
-  data: {}
+const props = defineProps({
+data: {}
 })
-
 </script>
 
 <style lang="scss" scoped>

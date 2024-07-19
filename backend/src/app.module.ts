@@ -9,10 +9,13 @@ import { CategoriesService } from './categories/categories.service';
 import { AboutService } from './about/about.service';
 import { CategoriesOnPostsService } from './categoriesOnPosts/categoriesOnPosts.service';
 import { AuthorService } from './author/author.service';
+import { MailChimpService } from './mailchimp/mailchimp.service';
+import { MailChimpModule } from './mailchimp/mailchimp.module';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
-  imports: [],
+  imports: [MailChimpModule, HttpModule],
   controllers: [AppController],
-  providers: [AppService, PrismaService, PostService, HomepageService, UserService, CategoriesService, AboutService, CategoriesOnPostsService, AuthorService],
+  providers: [AppService, PrismaService, PostService, HomepageService, UserService, CategoriesService, AboutService, CategoriesOnPostsService, AuthorService, MailChimpService],
 })
 export class AppModule {}

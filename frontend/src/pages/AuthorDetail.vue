@@ -27,7 +27,6 @@ onMounted(async () => {
     console.dir(e)
   }
 });
-
 </script>
 
 <style lang="scss">

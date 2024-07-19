@@ -3,18 +3,30 @@
     <h1>List of Authors</h1>
     <div class="authors__List">
       <div v-for="author in data" class="author__ListItem">
+        <div>
           <RouterLink :to="`author/${author.id}`">
             <img src="/icons/finsweetAuthor.svg" alt="">
             <h4>{{ author.first_name }} {{ author.last_name }}</h4>
             <span >{{ author.role }} @Company</span>
-            <div class="authors__ListSocial">
-              <img src="/icons/finsweetFacebook.svg" alt="" v-if="author.facebook">
-              <img src="/icons/finsweetTwitter.svg" alt="" v-if="author.twitter">
-              <img src="/icons/finsweetInstagram.svg" alt="" v-if="author.instagram">
-              <img src="/icons/finsweetLinkedin.svg" alt="" v-if="author.linkedin">
-            </div>
           </RouterLink>
+
+          <div class="authors__ListSocial">
+            <a href="//www.facebook.com" target="_blank" v-if="author.facebook">
+              <img src="/icons/finsweetFacebook.svg" alt="" >
+            </a>
+            <a href="//www.x.com" target="_blank" v-if="author.twitter">
+              <img src="/icons/finsweetTwitter.svg" alt="" >
+            </a>
+            <a href="//www.instagram.com" target="_blank" v-if="author.instagram">
+              <img src="/icons/finsweetInstagram.svg" alt="" >
+            </a>
+            <a href="//www.linkedin.com" target="_blank" v-if="author.linkedin">
+              <img src="/icons/finsweetLinkedin.svg" alt="" >
+            </a>
+          </div>
+
         </div>
+      </div>
     </div>
   </div>
 </template>

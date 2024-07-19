@@ -21,8 +21,6 @@ export class AuthorService {
     });
   }
 
-  
-
   async findAuthorDetail(authorId: number) {
     return this.prisma.author.findMany({
       include: {

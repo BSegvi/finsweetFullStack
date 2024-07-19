@@ -24,6 +24,7 @@
     }
   }
 }
+
 .started__Content {
   margin-left: r(-375);
   max-width: r(706);

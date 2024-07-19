@@ -36,7 +36,6 @@
 .authorDetailHeader__Content {
   position: relative;
   display: flex;
-  // gap: r(32);
   justify-content: space-between;
   max-width: r(1024);  
   width: 100%;

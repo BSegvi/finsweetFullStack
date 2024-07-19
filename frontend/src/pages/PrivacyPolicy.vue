@@ -15,10 +15,6 @@
   </section>
 </template>
 
-<script setup>
-  
-</script>
-
 <style lang="scss" scoped>
 .privacyPolicy__Header {
   text-align: center;

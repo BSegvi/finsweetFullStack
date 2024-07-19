@@ -12,9 +12,9 @@ import { PostService } from './post/post.service';
 import { HomepageService } from './homepage/homepage.service';
 import { CategoriesService } from './categories/categories.service';
 import { AboutService } from './about/about.service';
-import { title } from 'process';
 import { CategoriesOnPostsService } from './categoriesOnPosts/categoriesOnPosts.service';
 import { AuthorService } from './author/author.service';
+import { MailChimpService } from './mailchimp/mailchimp.service';
 
 @Controller()
 export class AppController {
@@ -24,7 +24,8 @@ export class AppController {
     private readonly categoriesService: CategoriesService,
     private readonly aboutService: AboutService,
     private readonly categoriesOnPostsService: CategoriesOnPostsService,
-    private readonly authorService: AuthorService
+    private readonly authorService: AuthorService,
+    private readonly mailChimpService: MailChimpService
   ) {}
 
   @Get('homepage')
@@ -61,13 +62,6 @@ export class AppController {
     });
   }
 
-  // @Get('category/:id')
-  // async categoryPosts(@Param('postId') postId: string): Promise<CategoryModel[]> {
-  //   return this.categoriesService.categoryPosts({
-  //     where: { postId: Number(postId) },
-  //   });
-  // }
-
   @Get('categories')
   async getCategories(): Promise<CategoryModel[]> {
     return this.categoriesService.findAllCategories();
@@ -92,11 +86,4 @@ export class AppController {
   async findAuthorDetail(@Param('id') id: string): Promise<AuthorModel[]> {
     return this.authorService.findAuthorDetail(Number(id))
   }
-
-  // @Get('post/:id')
-  // async getPostFromCategory(@Param('id') id: string): Promise<PostModel[]> {
-  //   return this.postService.posts({
-  //     where: { id: Number(id) },
-  //   });
-  // }
 }

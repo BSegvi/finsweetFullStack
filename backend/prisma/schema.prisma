@@ -25,6 +25,12 @@ model Homepage {
   homepage_join         Join[]         @relation("HomepageJoin")
 }
 
+model Users {
+  id    Int    @id @default(autoincrement())
+  name  String
+  email String
+}
+
 model Post {
   id             Int                 @id @default(autoincrement())
   title          String

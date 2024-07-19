@@ -8,9 +8,12 @@
           type="text"
           class="fname"
           name="fname"
-          value="Enter Your Email"
+          placeholder="Enter Your Email"
+          v-model="email"
         /><br />
-        <input type="submit" value="Submit" class="readMore__YellowButton" />
+        <button @click.prevent="addListMember" class="readMore__YellowButton" id="joinUs">
+          Submit
+        </button>
       </form>
     </div>
     
@@ -20,17 +23,17 @@
         <span>Hello@finsweet.com 020 7993 2905</span>
       </div>
       <div class="footer__ContactSocial">
-        <a href="">
+        <a href="//www.facebook.com/" target="_blank">
           <img src="/icons/finsweetFacebookFooter.svg" alt="" />
         </a>
-        <a href="">
-          <img src="/icons/finsweetFacebookFooter.svg" alt="" />
+        <a href="//www.x.com" target="_blank">
+          <img src="/icons/finsweetXFooter.svg" alt="" />
         </a>
-        <a href="">
-          <img src="/icons/finsweetFacebookFooter.svg" alt="" />
+        <a href="//www.instagram.com" target="_blank">
+          <img src="/icons/finsweetInstagramFooter.svg" alt="" />
         </a>
-        <a href="">
-          <img src="/icons/finsweetFacebookFooter.svg" alt="" />
+        <a href="//www.linkedin.com" target="_blank">
+          <img src="/icons/finsweetLinkedinFooter.svg" alt="" />
         </a>
       </div>
     </div>
@@ -39,11 +42,24 @@
 
 <script setup>
 import Navigation from "@/components/Navigation.vue";
+import { ofetch } from "ofetch";
+import { ref } from 'vue'
 
-// const props = defineProps({
-//   isButtonVisible: {},
-//   isAnchorVisible: {}
-// })
+const lists = ref([])
+const email = ref('')
+
+async function addListMember() {
+  try {
+    lists.value = await ofetch("http://localhost:3000/mailchimp/add-member", {
+      method: "POST",
+      body: {
+        email_address: email.value
+      }
+    })
+  } catch(e) {
+    console.dir(e)
+  }
+}
 </script>
 
 <style lang="scss">
@@ -75,10 +91,20 @@ import Navigation from "@/components/Navigation.vue";
       background-color: #2f3040;
       border: 1px solid rgba(109, 110, 118, 1);
       color: rgba(109, 110, 118, 1);
+      padding-left: r(24);
       max-width: r(323);
       min-width: r(323);
       max-height: r(56);
       min-height: r(56);
+      font-size: r(16);
+      line-height: r(28);
+      font-weight: 400;
+      &:focus-visible {
+        outline: none;
+        color: white;
+        opacity: .7;
+        border: 1px solid rgba(255, 255, 255, .8);
+      }
     }
   }
 }

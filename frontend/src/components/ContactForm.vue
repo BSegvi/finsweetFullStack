@@ -27,8 +27,6 @@
   </form>
 </template>
 
-<script setup></script>
-
 <style lang="scss" scoped>
 .contactForm {
   display: flex;

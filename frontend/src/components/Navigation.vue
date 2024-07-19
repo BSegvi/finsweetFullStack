@@ -27,17 +27,6 @@
   </nav>
 </template>
 
-<script setup>
-import { onMounted, ref } from 'vue';
-
-const isLoaded = ref(false)
-
-const props = defineProps({
-  isButtonVisible: {},
-  isAnchorVisible: {},
-})
-</script>
-
 <style scoped lang="scss">
 .navigationWrapper {
   background-color: #232536;
