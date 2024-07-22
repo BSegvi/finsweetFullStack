@@ -3,14 +3,19 @@
     <div>
       <h1 v-text="data.title" />
       <p v-text="data.description" />
-      <span>
-        BLOG > {{ data.title }}
-      </span>
+      <div class="categoryHeader__Links">
+        <RouterLink to="/blog"> BLOG </RouterLink>
+        <span>
+          &nbsp > {{ data.title }}
+        </span>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { RouterLink } from 'vue-router';
+
 const props = defineProps({
 data: {}
 })
@@ -43,16 +48,20 @@ data: {}
       max-width: r(515);
       width: 100%;
     }
-
-    span {
-      text-transform: uppercase;
-      font-size: r(16);
-      line-height: r(20);
-      letter-spacing: r(3);
-      font-weight: 500;
-      max-width: r(184);
-      width: 100%;
-    }
   }
+}
+
+.categoryHeader__Links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: r(515);
+  width: 100%;
+  margin: 0 auto;
+  font-size: r(16);
+  line-height: r(20);
+  letter-spacing: r(3);
+  font-weight: 500;
+  text-transform: uppercase;
 }
 </style>

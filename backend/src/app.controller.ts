@@ -52,6 +52,13 @@ export class AppController {
   ): Promise<PostModel[]> {
     return this.postService.posts({
       orderBy: { published_date: 'desc' },
+      include: {
+        categories: {
+          include: {
+            category: true
+          }
+        }
+      }
     });
   }
 

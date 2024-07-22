@@ -95,11 +95,11 @@
   gap: r(16);
   img {
     will-change: transform;
+    transition: all .2s;
   }
 
   img:hover {
     transform: scale(1.3);
-    transition: all .4s;
   }
 }
 </style>

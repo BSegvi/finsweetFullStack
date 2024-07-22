@@ -15,7 +15,7 @@
   max-width: r(414);
   width: 100%;
   text-align: center;
-  margin-bottom: r(128);
+  margin: r(128) auto;
   h1 {
     font-family: 'Sen';
     font-size: r(36);

@@ -4,9 +4,9 @@
       <div class="blogDetail__HeaderAuthorDate">
         <img src="/images/finsweetTestimonialsAuthor.png" alt="">
         <div>
-          <h3>
+          <RouterLink :to="`/author/${data.id}`">
             {{ data.first_name }} {{ data.last_name }}
-          </h3>
+          </RouterLink>
           <time>
             Posted on {{ new Date(data.published_date).toLocaleDateString('hr-HR') }}
           </time>
@@ -23,7 +23,7 @@
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non blandit massa enim nec. Scelerisque viverra mauris in aliquam sem. At risus viverra adipiscing at in tellus. Sociis natoque penatibus et magnis dis parturient montes. Ridiculus mus mauris vitae ultricies leo. Neque egestas congue quisque egestas diam. Risus in hendrerit gravida rutrum quisque non.
       </p>
     </div>
-    <AllPosts :data="posts" isFlex="true" loadHowMany="3" title="What to read next"/>
+    <AllPosts :data="posts" flex-direction="row" flex-item-direction="column" numberOfItems="3" title="What to read next"/>
     <JoinUs />
   </section>
 </template>
@@ -31,7 +31,7 @@
 <script setup>
 import { ofetch } from 'ofetch';
 import { onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 import JoinUs from '@/components/JoinUs.vue';
 import AllPosts from '@/components/AllPosts.vue';
 
@@ -57,6 +57,10 @@ onMounted(async () => {
 <style lang="scss">
 .blogDetail {
   margin-top: r(128);
+  .allPosts__SinglePost {
+    max-width: r(405);
+    width: 100%;
+  }
 }
 
 .blogDetail__Content {
@@ -106,7 +110,9 @@ onMounted(async () => {
   }
 
   > div {
-    h3 {
+    display: flex;
+    flex-direction: column;
+    a {
       font-family: 'Sen';
       font-size: r(28);
       line-height: r(40);

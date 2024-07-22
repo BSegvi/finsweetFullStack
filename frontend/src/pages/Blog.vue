@@ -1,7 +1,7 @@
 <template>
   <section class="blog" v-if="isLoaded">
     <FeaturedPosts :data="sortedPosts[0]" />
-    <AllPosts :data="sortedPosts" isFlex="false" title="All posts"/>
+    <AllPosts :data="sortedPosts" title="All posts"/>
     <Categories :data="categories" />
     <JoinUs />
   </section>
@@ -31,3 +31,13 @@ onMounted(async () => {
   }
 });
 </script>
+
+<style lang="scss">
+.blog {
+  .categories {
+    > h2 {
+      text-align: left;
+    }
+  }
+}
+</style>

@@ -40,10 +40,6 @@ onMounted(async () => {
       margin: 0 auto;
     }
 
-    .readMore__YellowButton {
-      display: none;
-    }
-
     .allPosts__Wrapper {
       max-width: r(1024);
       width: 100%;

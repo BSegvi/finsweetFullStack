@@ -3,23 +3,41 @@ import * as mailchimp from '@mailchimp/mailchimp_marketing'
 import { PrismaService } from "src/prisma/prisma.service";
 
 mailchimp.setConfig({
-  apiKey: "794ee32a1a70f8fd3e6880578ef7b614-us13",
-  server: "us13"
+  apiKey: "process.env.MAILCHIMP_API_KEY",
+  server: "process.env.SERVER"
 })
 
 @Injectable()
 export class MailChimpService {
   constructor(private prisma: PrismaService) {}
 
-  async getAllLists() {
-    return mailchimp.lists.getAllLists()
+  async getAllMembers() {
+    // let member = await mailchimp.lists.members
+    // console.log(member.status)
+    // return member
   }
 
   async addListMember(email: string) {
+    console.log(email)
     return await mailchimp.lists.addListMember("753066dad3", {
-      email_address: email,
-      status: "subscribed",
-    })
+          email_address: email,
+          status: "subscribed",
+        })
+    // try {
+    //   let member = await mailchimp.lists.getListMember('753066dad3', email)
+     
+    //   if(member.status == 'subscribed') {
+    //     return 'subscribed'
+    //   } else {
+    //     return 'try else'
+    //   }
+
+    // } catch (e) {
+    //   return await mailchimp.lists.addListMember("753066dad3", {
+    //     email_address: email,
+    //     status: "subscribed",
+    //   })
+    // }
   }
 }
 

@@ -1,15 +1,17 @@
 <template>
   <div class="allPosts container">
     <h1>{{props.title}}</h1>
-    <div class="allPosts__Wrapper" :class="{ allPosts__SinglePostFlex: isFlex }">
-      <div class="allPosts__SinglePost" v-for="(post, index) in loadedPosts">
+    <div class="allPosts__Wrapper" :style="{ 'flex-direction': flexDirection }">
+      <div class="allPosts__SinglePost"  v-for="(post, index) in loadedPosts">
         <RouterLink
           :to="`/blog-detail/${post.id}`"
           class="allPosts__SinglePostLink"
+          v-if="post"
+          :style="{'flex-direction': flexItemDirection}"
         >
           <img :src="images[index].imageSrc" alt="" />
           <div class="allPosts__SinglePostContent">
-            <h3 />
+            <h3 v-text="post?.categories?.[0]?.category.title" />
             <h2 v-text="post.title" />
             <p v-text="post.content" />
           </div>
@@ -21,7 +23,7 @@
       <button
         @click="loadMore(2)"
         class="readMore__YellowButton"
-        v-if="!isDisabled && !isFlex"
+        v-if="!isDisabled && flexDirection==='column'"
       >
         Load More
       </button>
@@ -34,25 +36,29 @@ import { onMounted, ref } from "vue";
 
 const props = defineProps({
   data: {},
-  isFlex: {
-    default: false,
+  flexDirection: {
+    default: 'column',
   },
-  loadHowMany: {
+  flexItemDirection: {
+    default: 'row'
+  },
+  numberOfItems: {
     default: 3
   },
   title: String
 });
 
-const numberOfPosts = ref(2);
+const numberOfPosts = ref(3);
 const loadedPosts = ref([]);
 const isDisabled = ref(false);
 
 onMounted(() => {
-  if(!props.isFlex) {
+  if(props.flexDirection === 'row') {
     loadedPosts.value = props.data.slice(0, numberOfPosts.value);
   }
   else {
-    loadedPosts.value = props.data.slice(0, props.loadHowMany);
+    loadedPosts.value = props.data.slice(0, props.numberOfItems);
+    if(loadedPosts.value.length <= numberOfPosts.value) isDisabled.value = true
   }
 });
 
@@ -101,6 +107,11 @@ function loadMore(howMany) {
   }
 }
 
+.allPosts__Wrapper {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .allPosts__SinglePostLink {
   display: flex;
   align-items: center;
@@ -142,24 +153,19 @@ function loadMore(howMany) {
   text-align: center;
 }
 
-.allPosts__SinglePostFlex {
+.allPosts__SinglePost {
   display: flex;
-  gap: r(32);
-  justify-content: space-between;
-  border-bottom: 1px solid rgba(109, 110, 118, 0.3);
+  // max-width: r(405);
+  width: 100%;
+}
 
-  .allPosts__SinglePost {
-    max-width: r(405);
-    width: 100%;
-  }
-
-  .allPosts__SinglePostLink {
-    display: block;
-    img {
-      min-height: r(318);
-      max-height: r(318);
-      object-fit: cover;
-    }
+.allPosts__SinglePostLink {
+  display: flex;
+  img {
+    min-height: r(318);
+    max-height: r(318);
+    object-fit: cover;
   }
 }
+
 </style>

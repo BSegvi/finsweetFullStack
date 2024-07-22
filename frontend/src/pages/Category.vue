@@ -14,12 +14,11 @@
 
         <h3>All tags</h3>
         <div class="category__TagList">
-          <RouterLink
-            v-for="category in allCategories"
-            class="category__TagListItem"
-          >
-            {{ category.title }}
-          </RouterLink>
+          <div v-for="category in allCategories">
+            <RouterLink :to="`/category/${category.id}`" class="category__TagListItem">
+              {{ category.title }}
+            </RouterLink>
+          </div>
         </div>
       </div>
     </div>
@@ -44,10 +43,11 @@ onMounted(async () => {
     ofetch(`http://localhost:3000${router.fullPath}`),
     ofetch("http://localhost:3000/categories"),
   ]);
-  isLoaded.value = true;
+  
   categoryData.value.forEach((element) => {
     posts.value.push(JSON.parse(JSON.stringify(element.post)));
   });
+  isLoaded.value = true;
 });
 </script>
 
@@ -89,10 +89,6 @@ onMounted(async () => {
       margin: r(20) 0 r(16);
     }
   }
-
-  .allPosts__ReadMoreButton {
-    display: none;
-  }
 }
 
 .category__Content {
@@ -129,6 +125,7 @@ onMounted(async () => {
     padding: r(28);
     border: 1.5px solid rgba(193, 193, 195, 1);
     cursor: pointer;
+    transition: all .4s;
     &:hover {
       background-color: rgba(255, 208, 80, 1);
     }
@@ -154,5 +151,10 @@ onMounted(async () => {
   line-height: r(32);
   font-weight: 700;
   color: rgba(35, 37, 54, 1);
+  transition: all .4s;
+  &:hover {
+    background-color: rgba(35, 37, 54, 1);
+    color: white;
+  }
 }
 </style>

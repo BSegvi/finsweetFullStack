@@ -59,6 +59,8 @@ async function addListMember() {
   } catch(e) {
     console.dir(e)
   }
+
+  console.log(lists.value)
 }
 </script>
 

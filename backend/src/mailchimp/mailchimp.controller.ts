@@ -13,6 +13,11 @@ export class MailChimpController {
     private readonly mailChimpService: MailChimpService
   ) {}
 
+  @Get('get-members')
+  handleGetMember(){
+    return this.mailChimpService.getAllMembers()
+  }
+
   @Post('add-member')
   handleAddMemberPost(@Body() body: any): object {
     return this.mailChimpService.addListMember(body.email_address);
