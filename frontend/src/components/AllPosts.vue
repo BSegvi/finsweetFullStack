@@ -155,7 +155,6 @@ function loadMore(howMany) {
 
 .allPosts__SinglePost {
   display: flex;
-  // max-width: r(405);
   width: 100%;
 }
 

@@ -50,7 +50,7 @@ const email = ref('')
 
 async function addListMember() {
   try {
-    lists.value = await ofetch("http://localhost:3000/mailchimp/add-member", {
+    lists.value = await ofetch("http://localhost:3000/mailchimp/add-member-mail", {
       method: "POST",
       body: {
         email_address: email.value
@@ -59,8 +59,6 @@ async function addListMember() {
   } catch(e) {
     console.dir(e)
   }
-
-  console.log(lists.value)
 }
 </script>
 

@@ -11,33 +11,24 @@ mailchimp.setConfig({
 export class MailChimpService {
   constructor(private prisma: PrismaService) {}
 
-  async getAllMembers() {
-    // let member = await mailchimp.lists.members
-    // console.log(member.status)
-    // return member
+  async addListMemberMail(email: string) {
+    try {
+      return await mailchimp.lists.addListMember("753066dad3", {
+        email_address: email,
+        status: "subscribed",
+      })
+    } catch(e) {
+      return e
+    }
   }
 
-  async addListMember(email: string) {
-    console.log(email)
-    return await mailchimp.lists.addListMember("753066dad3", {
-          email_address: email,
-          status: "subscribed",
-        })
-    // try {
-    //   let member = await mailchimp.lists.getListMember('753066dad3', email)
-     
-    //   if(member.status == 'subscribed') {
-    //     return 'subscribed'
-    //   } else {
-    //     return 'try else'
-    //   }
-
-    // } catch (e) {
-    //   return await mailchimp.lists.addListMember("753066dad3", {
-    //     email_address: email,
-    //     status: "subscribed",
-    //   })
-    // }
+  async addListMember(userData: any) {
+    userData = userData.userData
+    try {
+      return await mailchimp.lists.getListMembersInfo("list_id", userData.email_address)
+    } catch(e) {
+      return e.response
+    }
   }
 }
 
